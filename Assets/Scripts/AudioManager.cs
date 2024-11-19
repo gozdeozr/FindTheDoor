@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource monsterSound;
 
+    public AudioSource monsterWalkSound;
+
     
 
 
@@ -57,6 +59,7 @@ public class AudioManager : MonoBehaviour
         LoadVolumeSettings();
     }
 
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
         AssignAudioSources();
 
@@ -65,22 +68,23 @@ public class AudioManager : MonoBehaviour
                 bgMusicSource.time = bgMusicTime;
                 
             }            
-            if(bgMusicSource.isPlaying == false){
+            if(bgMusicSource.isPlaying == false ){
                 bgMusicSource.Play();
             }
+        }
 
         if(bgMusicSource2 != null){
             if(bgMusicSource2.time != 0f){
                 bgMusicSource2.time = bgMusicTime;
                 
-            }   
-            if(bgMusicSource2.isPlaying == false){
-                bgMusicSource2.Play();
-            }
+            
         }
         }
+        
         ApplyVolumeSettings();
     }
+
+
 
 
     private void AssignAudioSources()
@@ -157,6 +161,7 @@ public class AudioManager : MonoBehaviour
         if(bgMusicSource2 != null && bgMusicSource2.isPlaying){
             bgMusicTime = bgMusicSource2.time;
             }
+
     }
 
     private void OnApplicationQuit()

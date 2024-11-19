@@ -72,7 +72,7 @@ public class ItemSystem : MonoBehaviour
 
     public void UsePot2(){
 
-        if (blue_currentPotion > 0){
+        if (blue_currentPotion > 0 && SayacSystem.Instance.isZero == false){
             
             blue_currentPotion -=1;
             bluePotText.text = blue_currentPotion.ToString();
@@ -88,7 +88,7 @@ public class ItemSystem : MonoBehaviour
     }
     public void UsePot1(){
 
-        if (green_currentPotion > 0){
+        if (green_currentPotion > 0 && SayacSystem.Instance.isZero == false){
             
             isSpeedUp = false;
 
@@ -98,8 +98,9 @@ public class ItemSystem : MonoBehaviour
             greenPotText.text = green_currentPotion.ToString();
 
             PlayerPrefs.SetInt("green_currentPotion", green_currentPotion);
+            AudioManager.Instance.walkingSound.pitch = 0.63f;
 
-            AudioManager.Instance.walkingSound.pitch += 0.15f;
+            
             
             StartCoroutine(SpeedUpCoroutine());
 
@@ -122,6 +123,7 @@ public class ItemSystem : MonoBehaviour
 
             }
             yield return new WaitForSeconds(1);
+            
 
             speedUpTime -= 1;
 
@@ -129,7 +131,8 @@ public class ItemSystem : MonoBehaviour
             
 
         }
-        AudioManager.Instance.walkingSound.pitch -= 0.15f;
+        AudioManager.Instance.walkingSound.pitch = 0.48f;
+
 
 
 

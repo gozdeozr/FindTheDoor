@@ -50,6 +50,10 @@ public class AnimationManager : MonoBehaviour
 
     public void CharacterWalk(){
         PlayerAnimator.SetBool("isWalk",true);
+        if(ItemSystem.Instance.isSpeed == true){
+            PlayerAnimator.speed = 2f;
+        }
+        PlayerAnimator.speed = 1f;
     }
 
     public void CharacterStop(){

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 public class LevelManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class LevelManager : MonoBehaviour
     public GameObject loadingMenu;
 
     public GameObject mainCanvas;
+
 
 
     private void Awake(){
@@ -59,12 +62,15 @@ public class LevelManager : MonoBehaviour
         SahneGuncelle();
         Time.timeScale = 1f;
         StartCoroutine(LoadAsynchronously1(PlayerPrefs.GetString("sceneName")));
+        Lightmapping.Bake();
+
 
     }
 
     public void SahneRestart(){
         SahneGuncelle();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Lightmapping.Bake();
         Time.timeScale = 1f;
     }
 

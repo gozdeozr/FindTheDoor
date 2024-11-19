@@ -3,7 +3,10 @@ using System.Collections;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-	public class UIMenuManager : MonoBehaviour {
+
+using UnityEngine.Rendering;
+using UnityEditor;
+public class UIMenuManager : MonoBehaviour {
 
 		public static UIMenuManager Instance;
 		private Animator CameraObject;
@@ -17,11 +20,11 @@ using UnityEngine.SceneManagement;
 		public bool waitForInput = true;
         public GameObject loadingMenu;
         public Slider loadingBar;
-        public TMP_Text loadPromptText;
-		public KeyCode userPromptKey;
+
         public AudioSource hoverSound;       
         public AudioSource sliderSound;       
         public AudioSource swooshSound;
+
 		
 		
 
@@ -67,6 +70,7 @@ using UnityEngine.SceneManagement;
 			string sceneName = PlayerPrefs.GetString("sceneName");
 			Time.timeScale = 1f;
 			StartCoroutine(LoadAsynchronously(sceneName));
+			Lightmapping.Bake();
 				
 			
 			
@@ -179,6 +183,7 @@ using UnityEngine.SceneManagement;
         	PlayerPrefs.Save();
 
         	StartCoroutine(LoadAsynchronously("Level1"));
+			Lightmapping.Bake();
     	}
 		IEnumerator LoadAsynchronously(string sceneName){ // scene name is just the name of the current scene being loaded
 			AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);

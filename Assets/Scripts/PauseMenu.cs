@@ -18,15 +18,30 @@ public class PauseMenu : MonoBehaviour
     public void Resume(){
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
-        ItemSystem.Instance.Pot_panel.SetActive(true);
         Time.timeScale = 1f;
-        AudioManager.Instance.PlayAudio(AudioManager.Instance.bgMusicSource2);
-        AudioManager.Instance.PlayAudio(AudioManager.Instance.bgMusicSource);
+        if(SceneManager.GetActiveScene().buildIndex != 1){
+            if(SayacSystem.Instance.isZero == true){
+                if(AudioManager.Instance.bgMusicSource2 != null){
+
+                AudioManager.Instance.PlayAudio(AudioManager.Instance.bgMusicSource2);
+                
+            }   
+            }
+            
+            ItemSystem.Instance.Pot_panel.SetActive(true);
+            
+        }
+        if(AudioManager.Instance.bgMusicSource != null)
+            AudioManager.Instance.PlayAudio(AudioManager.Instance.bgMusicSource);
 
     }
     public void Pause(){
-        AudioManager.Instance.bgMusicSource.Pause();
-        AudioManager.Instance.bgMusicSource2.Pause();
+        if(AudioManager.Instance.bgMusicSource.isPlaying || AudioManager.Instance.bgMusicSource2.isPlaying){
+            AudioManager.Instance.bgMusicSource.Pause();
+            AudioManager.Instance.bgMusicSource2.Pause();
+        }
+
+        AudioManager.Instance.monsterWalkSound.Pause();
         ItemSystem.Instance.Pot_panel.SetActive(false);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;

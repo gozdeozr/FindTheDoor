@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuestionsSystem : MonoBehaviour
 {
 
     public static QuestionsSystem Instance;
-    public GameObject[] questionsTrigger;
-
-    public GameObject[] dialogsTrigger;
-
+  
     public GameObject levelFinishedTrigger;
 
-    public GameObject panelDialog;
-    public TextMeshProUGUI dialogText;
 
-    public GameObject panelQuestions;
-    public TextMeshProUGUI questionText;
+    public GameObject panelQuestionsDialog;
+    public TextMeshProUGUI questionDialogText;
 
     public GameObject panelLevelFinished;
 
@@ -31,26 +27,31 @@ public class QuestionsSystem : MonoBehaviour
     }
 
     public void Question(){
-        panelQuestions.SetActive(true);
+        panelQuestionsDialog.SetActive(true);
         ItemSystem.Instance.Pot_panel.SetActive(false);
         
-        StartCoroutine(bekle(15f, () => {
+        StartCoroutine(bekle(10f, () => {
             
-            panelQuestions.SetActive(false);
-            ItemSystem.Instance.Pot_panel.SetActive(true);
+            panelQuestionsDialog.SetActive(false);
+
+            if(SceneManager.GetActiveScene().buildIndex !=1 ){
+                ItemSystem.Instance.Pot_panel.SetActive(true);
+            }
                
         }));
     
     }
 
     public void Dialog(){
-        panelDialog.SetActive(true);
+        panelQuestionsDialog.SetActive(true);
         ItemSystem.Instance.Pot_panel.SetActive(false);
 
         StartCoroutine(bekle(5f, () => {
             
-            panelDialog.SetActive(false);
-            ItemSystem.Instance.Pot_panel.SetActive(true);
+            panelQuestionsDialog.SetActive(false);
+            if(SceneManager.GetActiveScene().buildIndex !=1 ){
+                ItemSystem.Instance.Pot_panel.SetActive(true);
+            }
                
         }));
     

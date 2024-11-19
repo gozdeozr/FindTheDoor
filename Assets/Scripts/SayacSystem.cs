@@ -29,6 +29,11 @@ public class SayacSystem : MonoBehaviour
 
     private int toplamCoin;
 
+    public GameObject follower;
+
+    private bool isbg2Active = false;
+    
+
 
 
     
@@ -74,9 +79,11 @@ public class SayacSystem : MonoBehaviour
             while (dakika > 0 || saniye > 0)
             {
                 yield return new WaitForSeconds(1);
+                //follower.SetActive(false);
                 saniye--;
                 if (saniye < 0)
                 {
+                    
                     dakika--;
                     saniye =59;
                 }
@@ -88,8 +95,17 @@ public class SayacSystem : MonoBehaviour
     public void SayacSifirlandi(){
         if(SceneManager.GetActiveScene().buildIndex != 1){
             if (dakika == 0 && saniye == 0){
+                    follower.SetActive(true);
+                    AudioManager.Instance.bgMusicSource.Stop();
                     isZero = true;
                     PlayerMovement.Instance.isSpeedUp = true;
+                    if(isbg2Active == false){
+                        if(SceneManager.GetActiveScene().buildIndex != 2){
+                            AudioManager.Instance.PlayAudio(AudioManager.Instance.bgMusicSource2);
+                            isbg2Active = true;
+                            
+                        }
+                    }
                             
             }
         }

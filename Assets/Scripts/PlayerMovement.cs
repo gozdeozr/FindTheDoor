@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        AudioManager.Instance.walkingSound.pitch = 0.48f;
         
     }
 
@@ -68,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
             if(z>0.5f||z<-0.5f||x>0.5f||x<-0.5f){
                 AnimationManager.Instance.CharacterWalk();
                 if (!isRunningAudioPlaying && !isAudioWooden) {
-                    AudioManager.Instance.walkingSound.pitch = 0.48f;
                     AudioManager.Instance.PlayAudio(AudioManager.Instance.walkingSound);
                     isRunningAudioPlaying = true;
                 }
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
         else if(isSpeedUp==true && z != 0){
-            speed = 8f;
+            speed = 7f;
             controller.Move(move * speed* Time.deltaTime);
             if(z>0.5f||z<-0.5f||x>0.5f||x<-0.5f){
                 AnimationManager.Instance.CharacterRun();

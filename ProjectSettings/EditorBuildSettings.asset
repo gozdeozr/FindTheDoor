@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Gozde/Level1/Level2.unity
     guid: 53d9058c75bdcdc4a980b32565e05356
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
-    guid: b82040125533af14191ae0273e882b80
-  - enabled: 1
-    path: Assets/Scenes/Level4.unity
-    guid: 444bd90385f791f4bbf75186dc29b74f
+    path: Assets/Gozde/Level1/Level3.unity
+    guid: b4c21a024830ddc419c8c8f197efa134
   m_configObjects: {}
